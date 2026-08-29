@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CTBU一只喵 · 新生干货导航站</title>
+  <meta name="description" content="重庆工商大学新生干货一站式导航——军训、选课、考试、生活、AI工具，想看哪份点哪份。" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- 品牌区 -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="brand">
+        <div class="brand-logo" aria-hidden="true">
+          <svg viewBox="0 0 64 64" width="44" height="44" role="img" aria-label="一只喵">
+            <circle cx="32" cy="34" r="22" fill="#d97757"/>
+            <path d="M14 22 L20 10 L26 22 Z" fill="#d97757"/>
+            <path d="M50 22 L44 10 L38 22 Z" fill="#d97757"/>
+            <circle cx="24" cy="32" r="3" fill="#3a2e28"/>
+            <circle cx="40" cy="32" r="3" fill="#3a2e28"/>
+            <path d="M29 40 Q32 43 35 40" stroke="#3a2e28" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+            <path d="M32 40 L32 41.5" stroke="#e89a82" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>CTBU一只喵</h1>
+          <p class="slogan">新生干货，一站搞定</p>
+        </div>
+      </div>
+      <p class="hero-desc">想看哪份点哪份 · 持续更新 · 收藏这一个页面就够啦</p>
+    </div>
+  </header>
+
+  <!-- 搜索 + 分类 -->
+  <div class="toolbar" id="toolbar">
+    <div class="toolbar-inner">
+      <div class="search-wrap">
+        <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <input id="search" type="search" placeholder="搜干货：军训 / 选课 / 四六级 …" autocomplete="off" />
+      </div>
+      <div class="chips" id="chips" role="tablist" aria-label="分类筛选"></div>
+    </div>
+  </div>
+
+  <main class="container">
+    <!-- 新生引导：按入学阶段 -->
+    <section class="guide" aria-label="新生引导">
+      <h2 class="section-title">不知道从哪看？按阶段来 👇</h2>
+      <div class="guide-grid">
+        <button class="guide-card" data-stage="报到前">
+          <span class="guide-emoji">📦</span>
+          <span class="guide-name">报到前</span>
+          <span class="guide-sub">要带啥 · 怎么去</span>
+        </button>
+        <button class="guide-card" data-stage="报到中">
+          <span class="guide-emoji">🏫</span>
+          <span class="guide-name">报到中</span>
+          <span class="guide-sub">流程 · 证件 · 校园卡</span>
+        </button>
+        <button class="guide-card" data-stage="开学后">
+          <span class="guide-emoji">✨</span>
+          <span class="guide-name">开学后</span>
+          <span class="guide-sub">军训 · 选课 · 生活</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 结果计数 -->
+    <div class="result-bar">
+      <span id="count" class="count"></span>
+      <span id="stage-tag" class="stage-tag" hidden></span>
+    </div>
+
+    <!-- 资源卡片网格 -->
+    <div class="grid" id="grid" aria-live="polite"></div>
+
+    <!-- 空状态 -->
+    <div class="empty" id="empty" hidden>
+      <div class="empty-emoji">🐱</div>
+      <p>没找到相关内容～换个关键词试试？</p>
+    </div>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <p class="footer-brand">CTBU一只喵 · 值得信赖的学姐</p>
+    <p class="footer-note">内容仅供参考，具体以学校官方通知为准。</p>
+    <p class="footer-update" id="updatedAt"></p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
