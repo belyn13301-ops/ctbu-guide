@@ -26,7 +26,7 @@
 const CONFIG = {
   brand: "CTBU一只喵",
   slogan: "新生干货，一站搞定",
-  updatedAt: "2026年9月1日更新 v5"   // 改这里更新页脚的"最后更新"
+  updatedAt: "2026年9月1日更新 v6"   // 改这里更新页脚的"最后更新"
 };
 
 /* ---------- 分类（顺序就是显示顺序） ---------- */
@@ -144,6 +144,12 @@ const RESOURCES = [
     title: "大学第一台电脑怎么选",
     desc: "预算配置不踩坑，8张图按顺序看",
     type: "图文", link: "pages/pc.html"
+  },
+  {
+    category: "校园生活", stage: "报到前",
+    title: "宿舍开学清单都有什么？",
+    desc: "床垫·床品·电子·药品·军训·避雷，CTBU学姐逐项拆解",
+    type: "图文", link: "pages/dorm-list.html", hot: true
   },
   {
     category: "校园生活", stage: "开学后",
