@@ -26,7 +26,7 @@
 const CONFIG = {
   brand: "CTBU一只喵",
   slogan: "新生干货，一站搞定",
-  updatedAt: "2026年7月31日更新 v2"   // 改这里更新页脚的"最后更新"
+  updatedAt: "2026年8月31日更新 v3"   // 改这里更新页脚的"最后更新"
 };
 
 /* ---------- 分类（顺序就是显示顺序） ---------- */
@@ -69,9 +69,9 @@ const RESOURCES = [
   // ---------- 选课&课表 ----------
   {
     category: "选课&课表", stage: "开学后",
-    title: "新生选课保姆级攻略",
-    desc: "选什么、怎么抢、避雷课全整理",
-    type: "图文", link: "#", hot: true
+    title: "绩点？学分？选课？一篇讲明白",
+    desc: "大一最容易懵的三件事，10张图看完不踩坑",
+    type: "图文", link: "pages/gpa.html", hot: true
   },
   {
     category: "选课&课表", stage: "开学后",
@@ -98,12 +98,6 @@ const RESOURCES = [
     title: "期末高效复习法",
     desc: "绩点想拿高？这套方法亲测有效",
     type: "图文", link: "#"
-  },
-  {
-    category: "考试&复习", stage: "开学后",
-    title: "绩点计算&保研常识",
-    desc: "搞懂绩点算法，早做规划",
-    type: "资料", link: "#"
   },
 
   // ---------- 证件&办事 ----------
