@@ -26,7 +26,7 @@
 const CONFIG = {
   brand: "CTBU一只喵",
   slogan: "新生干货，一站搞定",
-  updatedAt: "2026年9月1日更新 v6"   // 改这里更新页脚的"最后更新"
+  updatedAt: "2026年9月1日更新 v7"   // 改这里更新页脚的"最后更新"
 };
 
 /* ---------- 分类（顺序就是显示顺序） ---------- */
@@ -72,6 +72,12 @@ const RESOURCES = [
     title: "绩点？学分？选课？一篇讲明白",
     desc: "大一最容易懵的三件事，10张图看完不踩坑",
     type: "图文", link: "pages/gpa.html", hot: true
+  },
+  {
+    category: "选课&课表", stage: "开学后",
+    title: "大一就想转专业？先看完这一篇",
+    desc: "时间线/绩点要求/11种禁区/热门数据/4条赛道/4步行动清单",
+    type: "图文", link: "pages/major-change.html", hot: true
   },
   {
     category: "选课&课表", stage: "开学后",
