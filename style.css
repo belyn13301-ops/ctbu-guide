@@ -76,6 +76,40 @@ a { color: inherit; text-decoration: none; }
   color: var(--text-soft);
 }
 
+/* ===== 喵窝交流区横幅（首页显眼入口） ===== */
+.community-banner {
+  display: block;
+  max-width: var(--maxw);
+  margin: 16px auto 0;
+  padding: 15px 20px;
+  border-radius: var(--radius);
+  border: 1px solid #ecd9bf;
+  background: linear-gradient(135deg, #f9efe2, #f6e6d3);
+  box-shadow: var(--shadow);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.community-banner:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+.community-banner-inner { display: flex; align-items: center; gap: 14px; }
+.community-banner .cb-icon { font-size: 32px; line-height: 1; }
+.community-banner .cb-text { flex: 1; min-width: 0; }
+.community-banner .cb-title { font-size: 16px; font-weight: 800; color: var(--primary-dark); }
+.community-banner .cb-sub { font-size: 12.5px; color: var(--text-soft); margin-top: 2px; }
+.community-banner .cb-go {
+  flex-shrink: 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--primary);
+  padding: 8px 14px;
+  border-radius: 999px;
+  white-space: nowrap;
+  transition: background .2s;
+}
+.community-banner:hover .cb-go { background: var(--primary-dark); }
+
 /* ===== 搜索 + 分类 工具栏 ===== */
 .toolbar {
   position: sticky;
