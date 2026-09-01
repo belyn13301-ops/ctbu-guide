@@ -67,6 +67,40 @@
       align-items: center;
       justify-content: center;
     }
+    .qr-real {
+      margin: 18px 0 14px;
+      padding: 24px 20px 20px;
+      border-radius: 16px;
+      background: #fffdf9;
+      border: 1px solid #f0e4d4;
+      text-align: center;
+    }
+    .qr-real img {
+      max-width: 220px;
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+      margin: 0 auto;
+    }
+    .qr-real .qr-title { font-size: 16px; font-weight: 700; margin: 14px 0 4px; color: #3a3530; }
+    .qr-real .qr-sub { font-size: 13px; color: #8a8078; }
+    .qr-real .qr-note { font-size: 12px; color: #b08d70; margin-top: 10px; line-height: 1.5; }
+    .question-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 14px;
+      margin: 18px 0 14px;
+    }
+    .q-card {
+      background: #fffdf9;
+      border: 1px solid #f0e4d4;
+      border-radius: 14px;
+      padding: 16px;
+    }
+    .q-card .q-title { font-size: 15px; font-weight: 700; color: #3a3530; margin-bottom: 8px; line-height: 1.5; }
+    .q-card .q-answer { font-size: 14px; color: #5c5650; line-height: 1.65; }
+    .q-card .q-link { display: inline-block; margin-top: 10px; font-size: 13px; color: #b0684a; text-decoration: none; }
+    .q-card .q-link:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -106,21 +140,54 @@
 
       <h2>三、怎么进群</h2>
       <p>喵窝的入群码，和本站链接一起发到大家手上——拿到入群码的同学，微信扫码就能进群，进了群就是自己人。</p>
-      <div class="qr-placeholder">
-        <div class="qr-icon">🐱</div>
-        <div class="qr-title">入群码整理中</div>
-        <div class="qr-sub">拿到入群码的同学，微信扫码即可进群<br />还没拿到的，私信学姐要一份就好～</div>
+      <div class="qr-real">
+        <img src="../assets/qr-community.png" alt="26喵喵工商之家微信群二维码" />
+        <div class="qr-title">群聊：26喵喵工商之家 🐱🐱</div>
+        <div class="qr-sub">微信扫码即可进群</div>
+        <div class="qr-note">二维码 7 天内有效（截至 9 月 8 日前），过期后会在群里更新，或私信学姐要新码</div>
       </div>
 
       <h2>四、下期想听什么？在群里说</h2>
       <p>这个站更新什么内容，<b>由你说了算</b>。想看哪个食堂的测评？想知道抢课的真实技巧？期末周怎么复习不崩？直接在群里 <b>@一只喵</b> 提出来——被翻牌的选题，下一期就安排。</p>
 
-      <h2>五、留言板（即将开放）</h2>
-      <p>除了微信群，这里还会开一块<b>网页留言板</b>：不方便进群、或者想匿名说点什么的同学，可以直接在网页上留言讨论，不用装任何东西。</p>
+      <h2>五、大家都在问（问题墙）</h2>
+      <p>这里收集了一些同学们常问的问题，答案会不断更新。如果你想问新的问题，可以在群里 <b>@一只喵</b>，上榜后大家都能看到。</p>
+      <div class="question-grid">
+        <div class="q-card">
+          <div class="q-title">南岸校区和兰花湖校区怎么分配？</div>
+          <div class="q-answer">经管类大一多在兰花湖校区，之后搬回南岸；其他专业大多直接在南岸报到。</div>
+          <a class="q-link" href="campus.html">→ 看《校区分配》</a>
+        </div>
+        <div class="q-card">
+          <div class="q-title">宿舍床位是上床下桌吗？有独卫吗？</div>
+          <div class="q-answer">不同园区配置不同，新北、南区和兰花湖各有差异，开学前可以按园区具体准备。</div>
+          <a class="q-link" href="dorm.html">→ 看《寝室介绍》</a>
+        </div>
+        <div class="q-card">
+          <div class="q-title">开学床垫和床上用品要买多大的？</div>
+          <div class="q-answer">床垫建议按园区床架尺寸买；床上三件套可以自带，也可以到校后再买。</div>
+          <a class="q-link" href="dorm-list.html">→ 看《宿舍开学清单》</a>
+        </div>
+        <div class="q-card">
+          <div class="q-title">选课是怎么个流程？怎么才能抢到课？</div>
+          <div class="q-answer">一般分为预选、正选、补退选几个阶段，提前看好培养方案和学分要求更稳。</div>
+          <a class="q-link" href="gpa.html">→ 看《绩点·学分·选课》</a>
+        </div>
+        <div class="q-card">
+          <div class="q-title">大一转专业需要什么条件？</div>
+          <div class="q-answer">不同学院转入转出要求不同，大一下学期可以申请，绩点和科目成绩是硬通货。</div>
+          <a class="q-link" href="major-change.html">→ 看《转专业攻略》</a>
+        </div>
+        <div class="q-card">
+          <div class="q-title">开学报到要带上哪些材料？</div>
+          <div class="q-answer">录取通知书、身份证、档案、证件照是基本盘，具体要求按通知书清单核对。</div>
+          <a class="q-link" href="notice.html">→ 看《开学注意事项》</a>
+        </div>
+      </div>
       <div class="board-coming">
         <div class="bc-icon">✍️</div>
-        <div class="bc-title">留言板装修中</div>
-        <div class="bc-sub">等站点搬到正式的家，留言板就开门营业<br />到时候在这里写下你想说的话，学姐都会看到</div>
+        <div class="bc-title">你的问题也想上榜？</div>
+        <div class="bc-sub">直接在群里 @ 一只喵 提问<br />被收录的问题会同步更新到这块板上</div>
       </div>
 
       <div class="closing">
