@@ -1,0 +1,377 @@
+/* ============================================================
+   喵小助手 · 悬浮猫客服（可爱粉色系，与站点暖色协调）
+   ============================================================ */
+
+.cat-widget {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 1000;
+  font-family: inherit;
+}
+
+/* ---------- 悬浮按钮（收起状态） ---------- */
+.cat-fab {
+  position: relative;
+  width: 62px;
+  height: 62px;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #fbd9e1, #f2aebf);
+  box-shadow: 0 6px 18px rgba(230, 140, 165, 0.45), 0 2px 6px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: box-shadow 0.25s ease;
+}
+.cat-fab:hover {
+  box-shadow: 0 8px 24px rgba(230, 140, 165, 0.6), 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+.cat-fab:active {
+  transform: scale(0.94);
+}
+/* 呼吸摆动：按钮内层做动画，避免和外层 transform 打架 */
+.cat-fab-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: catBreathe 3.4s ease-in-out infinite;
+}
+@keyframes catBreathe {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%      { transform: translateY(-2.5px) scale(1.04); }
+}
+
+/* 尾巴（在按钮圆外，向左下探出） */
+.cat-tail {
+  position: absolute;
+  left: -15px;
+  bottom: 4px;
+  width: 36px;
+  height: 36px;
+  pointer-events: none;
+  transform-origin: 86% 86%;
+  animation: catSway 4.2s ease-in-out infinite;
+}
+.cat-tail.fast { animation-duration: 0.55s; }
+@keyframes catSway {
+  0%, 100% { transform: rotate(-7deg); }
+  50%      { transform: rotate(14deg); }
+}
+
+/* ---------- 头顶提示气泡 ---------- */
+.cat-bubble-tip {
+  position: absolute;
+  right: 2px;
+  bottom: 76px;
+  background: #fff;
+  border: 1px solid #f2d5dd;
+  color: #b2607a;
+  font-size: 12.5px;
+  line-height: 1.4;
+  padding: 8px 12px;
+  border-radius: 12px;
+  border-bottom-right-radius: 3px;
+  box-shadow: 0 4px 14px rgba(190, 110, 135, 0.18);
+  white-space: nowrap;
+  animation: tipFloat 3s ease-in-out infinite;
+}
+.cat-bubble-tip::after {
+  content: "";
+  position: absolute;
+  right: 14px;
+  bottom: -5px;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-right: 1px solid #f2d5dd;
+  border-bottom: 1px solid #f2d5dd;
+  transform: rotate(45deg);
+}
+.cat-bubble-tip.pop { animation: tipIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), tipFloat 3s ease-in-out 0.35s infinite; }
+@keyframes tipIn { from { opacity: 0; transform: translateY(8px) scale(0.85); } }
+@keyframes tipFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-3px); }
+}
+.cat-bubble-tip.hide { animation: tipOut 0.25s ease forwards; }
+@keyframes tipOut { to { opacity: 0; transform: translateY(6px); } }
+
+/* ---------- 对话窗口 ---------- */
+.cat-panel {
+  position: absolute;
+  bottom: 78px;
+  right: 0;
+  width: 342px;
+  max-width: calc(100vw - 36px);
+  max-height: min(540px, 74vh);
+  display: flex;
+  flex-direction: column;
+  background: #fffdfc;
+  border: 1px solid #f2dfe4;
+  border-radius: 18px;
+  box-shadow: 0 18px 44px rgba(180, 110, 130, 0.22);
+  overflow: hidden;
+  transform-origin: bottom right;
+  animation: catPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes catPop {
+  from { transform: scale(0.82) translateY(12px); opacity: 0; }
+}
+.cat-panel.closing { animation: catClose 0.2s ease forwards; }
+@keyframes catClose {
+  to { transform: scale(0.85) translateY(10px); opacity: 0; }
+}
+
+/* 顶栏 */
+.cat-panel-head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, #fbdce3, #f6bcc9);
+  border-bottom: 1px solid #f2d5dd;
+  cursor: pointer;
+  user-select: none;
+}
+.cat-head-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(200, 120, 140, 0.3);
+  flex-shrink: 0;
+}
+.cat-head-info { flex: 1; min-width: 0; }
+.cat-head-info b {
+  display: block;
+  font-size: 14.5px;
+  color: #8a4560;
+}
+.cat-head-info span {
+  display: block;
+  font-size: 11.5px;
+  color: #b07a8c;
+  margin-top: 1px;
+}
+.cat-close {
+  border: none;
+  background: rgba(255, 255, 255, 0.55);
+  color: #a0607a;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  flex-shrink: 0;
+}
+.cat-close:hover { background: #fff; transform: rotate(90deg); }
+
+/* 消息区 */
+.cat-msgs {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  scroll-behavior: smooth;
+}
+.cat-msgs::-webkit-scrollbar { width: 5px; }
+.cat-msgs::-webkit-scrollbar-thumb { background: #f0cfD7; border-radius: 3px; }
+
+.cat-msg {
+  display: flex;
+  gap: 8px;
+  margin: 8px 0;
+  align-items: flex-start;
+}
+.cat-msg.user { flex-direction: row-reverse; }
+.cat-msg .avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #fdeef2;
+  border: 1px solid #f6d7df;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.cat-msg .bubble {
+  max-width: 76%;
+  padding: 9px 13px;
+  border-radius: 14px;
+  font-size: 13.5px;
+  line-height: 1.65;
+  white-space: pre-line;
+  word-break: break-word;
+}
+.cat-msg.bot .bubble {
+  background: #fdf0f4;
+  border: 1px solid #f4dbe2;
+  border-top-left-radius: 4px;
+  color: #5c434d;
+}
+.cat-msg.user .bubble {
+  background: linear-gradient(135deg, #f3aec0, #e88ca2);
+  color: #fff;
+  border-top-right-radius: 4px;
+}
+.cat-msg .bubble.msg-in { animation: msgIn 0.3s ease both; }
+@keyframes msgIn { from { opacity: 0; transform: translateY(6px); } }
+
+/* 回复里的链接按钮 */
+.cat-link-btn {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 6px 13px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #c2557a;
+  background: #fff;
+  border: 1.5px solid #f0b6c6;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.cat-link-btn:hover {
+  background: #fdeef2;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(220, 140, 165, 0.3);
+}
+
+/* 打字指示（思考中…） */
+.cat-typing { display: inline-flex; gap: 4px; padding: 4px 2px; }
+.cat-typing i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #dfa2b4;
+  animation: dotBounce 1.2s ease-in-out infinite;
+}
+.cat-typing i:nth-child(2) { animation-delay: 0.15s; }
+.cat-typing i:nth-child(3) { animation-delay: 0.3s; }
+@keyframes dotBounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.55; }
+  30%           { transform: translateY(-5px); opacity: 1; }
+}
+
+/* 快捷问题 */
+.cat-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 10px 2px 4px;
+}
+.cat-chip {
+  border: 1px solid #f0c6d2;
+  background: #fff;
+  color: #c2557a;
+  font-size: 12px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+.cat-chip:hover {
+  background: #fdeef2;
+  transform: translateY(-1px);
+}
+
+/* 输入栏 */
+.cat-input-bar {
+  display: flex;
+  gap: 8px;
+  padding: 10px 12px;
+  border-top: 1px solid #f4e0e5;
+  background: #fffdfc;
+}
+.cat-input-bar input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid #eed4da;
+  border-radius: 999px;
+  padding: 9px 14px;
+  font-size: 13.5px;
+  outline: none;
+  background: #fff;
+  font-family: inherit;
+  color: #5c434d;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.cat-input-bar input:focus {
+  border-color: #ec9db1;
+  box-shadow: 0 0 0 3px rgba(238, 157, 177, 0.15);
+}
+.cat-input-bar input::placeholder { color: #cfadb8; }
+.cat-input-bar button {
+  border: none;
+  background: linear-gradient(135deg, #f3aec0, #e88ca2);
+  color: #fff;
+  border-radius: 999px;
+  padding: 0 16px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.2s;
+  font-family: inherit;
+  flex-shrink: 0;
+}
+.cat-input-bar button:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(230, 140, 165, 0.45); }
+.cat-input-bar button:active { transform: scale(0.95); }
+
+/* ---------- 猫的表情（SVG 内部） ---------- */
+.cat-eye, .cat-eye-happy {
+  transition: opacity 0.18s ease, transform 0.13s ease;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.cat-face .cat-eye-happy { opacity: 0; }
+.cat-face.happy .cat-eye { opacity: 0; }
+.cat-face.happy .cat-eye-happy { opacity: 1; }
+.cat-face.blink .cat-eye { transform: scaleY(0.06); }
+.cat-face.happy .cat-blush { opacity: 0.85; }
+
+/* 摸头时飘出的爱心 */
+.cat-heart {
+  position: absolute;
+  font-size: 15px;
+  color: #ef8ba4;
+  pointer-events: none;
+  animation: heartFloat 1.15s ease-out forwards;
+}
+@keyframes heartFloat {
+  from { opacity: 1; transform: translateY(0) scale(0.5) rotate(-8deg); }
+  to   { opacity: 0; transform: translateY(-52px) scale(1.2) rotate(10deg); }
+}
+
+/* ---------- 移动端 ---------- */
+@media (max-width: 520px) {
+  .cat-widget { right: 12px; bottom: 12px; }
+  .cat-fab { width: 56px; height: 56px; }
+  .cat-panel {
+    left: 12px;
+    right: 12px;
+    width: auto;
+    max-width: none;
+    bottom: 74px;
+    max-height: 68vh;
+  }
+  .cat-msg .bubble { max-width: 82%; }
+  .cat-bubble-tip { right: 0; }
+}
+
+/* 尊重减弱动效偏好 */
+@media (prefers-reduced-motion: reduce) {
+  .cat-fab-body, .cat-tail, .cat-bubble-tip { animation: none; }
+}
