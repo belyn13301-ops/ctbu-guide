@@ -1,5 +1,5 @@
 /* ============================================================
-   喵小助手 · 悬浮猫客服（纯前端，无依赖）
+   喵咪宝 · 悬浮猫客服（纯前端，无依赖）
    - 收起：右下角 3D 玻璃科技猫头像（呼吸 + 环绕粒子）
    - 展开：玻璃拟态对话窗口，本地关键词匹配问答
    - 表情：思考时头像轻颤 / 回复时摇摆 / 摸头开心冒爱心
@@ -71,13 +71,13 @@
       a: "图书馆的攻略学姐还在整理中喵…想早点了解的话，去喵窝群问学长学姐会更快～" },
 
     { keys: ["你是谁", "介绍", "小助手", "机器人", "真人"],
-      a: "我是喵小助手喵，由学姐训练的小看家猫，会回答站内整理过的新生问题。答不上来的我会老实说，不瞎编喵。" },
+      a: "我是喵咪宝喵，由学姐训练的小看家猫，会回答站内整理过的新生问题。答不上来的我会老实说，不瞎编喵。" },
 
     { keys: ["谢谢", "感谢", "辛苦", "爱你"],
       a: "不客气喵～能帮到你就好。还有问题随时来问，也可以去喵窝找学长学姐们聊聊～" },
 
     { keys: ["你好", "您好", "hi", "hello", "在吗", "哈喽", "嗨", "早上好", "晚上好"],
-      a: "你好呀喵～我是喵小助手。报到、宿舍、选课、密码这些都可以问我，先点下面的快捷问题也可以喵。" }
+      a: "你好呀喵～我是喵咪宝。报到、宿舍、选课、密码这些都可以问我，先点下面的快捷问题也可以喵。" }
   ];
 
   /* 快捷问题按钮 */
@@ -94,14 +94,14 @@
   var fbIndex = 0;
 
   function avatarImg(cls, size) {
-    return '<img class="' + (cls || "") + '" src="' + CAT_AVATAR + '" width="' + size + '" height="' + size + '" alt="喵小助手" />';
+    return '<img class="' + (cls || "") + '" src="' + CAT_AVATAR + '" width="' + size + '" height="' + size + '" alt="喵咪宝" />';
   }
 
   /* ---------- 构建挂件 DOM ---------- */
   var widget = document.createElement("div");
   widget.className = "cat-widget";
   widget.innerHTML = ''
-    + '<button class="cat-fab" id="catFab" aria-label="打开喵小助手">'
+    + '<button class="cat-fab" id="catFab" aria-label="打开喵咪宝">'
     +   avatarImg("cat-fab-img", 66)
     +   '<span class="cat-orbs" aria-hidden="true"><span class="orb-1"></span><span class="orb-2"></span><span class="orb-3"></span></span>'
     + '</button>'
@@ -109,7 +109,7 @@
     + '<div class="cat-panel" id="catPanel" hidden>'
     +   '<div class="cat-panel-head" id="catHead" title="摸摸头">'
     +     '<div class="cat-head-avatar">' + avatarImg("", 46) + '</div>'
-    +     '<div class="cat-head-info"><b>喵小助手</b><span>在线 · 会看家会答疑</span></div>'
+    +     '<div class="cat-head-info"><b>喵咪宝</b><span>在线 · 会看家会答疑</span></div>'
     +     '<button class="cat-close" id="catClose" aria-label="收起对话">×</button>'
     +   '</div>'
     +   '<div class="cat-msgs" id="catMsgs"></div>'
@@ -182,7 +182,7 @@
       setState("happy", 900);
       if (!greeted) {
         greeted = true;
-        botSay("喵呜～你好呀！我是喵小助手，关于报到、宿舍、选课、密码这些问题都可以问我喵。", function () {
+        botSay("喵呜～你好呀！我是喵咪宝，关于报到、宿舍、选课、密码这些问题都可以问我喵。", function () {
           appendChips();
         });
       }
