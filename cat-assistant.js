@@ -1,49 +1,20 @@
 /* ============================================================
    喵小助手 · 悬浮猫客服（纯前端，无依赖）
-   - 收起：右下角猫头像（呼吸摆动 + 随机眨眼）
-   - 展开：对话窗口，本地关键词匹配问答
-   - 表情：思考眨眼 / 回复摇尾巴 / 摸头开心冒爱心
+   - 收起：右下角 3D 玻璃科技猫头像（呼吸 + 环绕粒子）
+   - 展开：玻璃拟态对话窗口，本地关键词匹配问答
+   - 表情：思考时头像轻颤 / 回复时摇摆 / 摸头开心冒爱心
    - 快捷问题 + 头顶提示气泡 + 移动端适配
    ============================================================ */
 (function () {
   "use strict";
 
-  /* ---------- 猫脸 SVG（字符串生成，可多处复用） ---------- */
-  function catFaceSVG(size) {
-    return ''
-      + '<svg class="cat-face" viewBox="0 0 64 64" width="' + size + '" height="' + size + '" aria-hidden="true">'
-      +   '<path d="M15 26 L10 7 L28 15 Z" fill="#f2a4b8" stroke="#e08da2" stroke-width="1.2" stroke-linejoin="round"/>'
-      +   '<path d="M49 26 L54 7 L36 15 Z" fill="#f2a4b8" stroke="#e08da2" stroke-width="1.2" stroke-linejoin="round"/>'
-      +   '<path d="M16.5 21 L13.8 11.5 L23.5 16.2 Z" fill="#fbd6df"/>'
-      +   '<path d="M47.5 21 L50.2 11.5 L40.5 16.2 Z" fill="#fbd6df"/>'
-      +   '<circle cx="32" cy="37" r="20" fill="#f6bcc8"/>'
-      +   '<ellipse class="cat-blush" cx="18" cy="43" rx="4.6" ry="2.7" fill="#f08fa4" opacity="0.45"/>'
-      +   '<ellipse class="cat-blush" cx="46" cy="43" rx="4.6" ry="2.7" fill="#f08fa4" opacity="0.45"/>'
-      +   '<g class="cat-eye">'
-      +     '<circle cx="24.5" cy="35.5" r="3.6" fill="#4a3540"/>'
-      +     '<circle cx="25.8" cy="34.3" r="1.25" fill="#fff"/>'
-      +   '</g>'
-      +   '<g class="cat-eye">'
-      +     '<circle cx="39.5" cy="35.5" r="3.6" fill="#4a3540"/>'
-      +     '<circle cx="40.8" cy="34.3" r="1.25" fill="#fff"/>'
-      +   '</g>'
-      +   '<path class="cat-eye-happy" d="M21 36 q3.5 -4.5 7 0 M36 36 q3.5 -4.5 7 0" stroke="#4a3540" stroke-width="2.2" fill="none" stroke-linecap="round"/>'
-      +   '<path d="M30.4 40.6 L33.6 40.6 L32 42.6 Z" fill="#e0838f"/>'
-      +   '<path d="M32 42.6 q-1.6 3.1 -4.6 1.3 M32 42.6 q1.6 3.1 4.6 1.3" stroke="#4a3540" stroke-width="1.8" fill="none" stroke-linecap="round"/>'
-      + '</svg>';
-  }
-
-  function catTailSVG() {
-    return '<svg class="cat-tail" viewBox="0 0 40 40" aria-hidden="true">'
-      + '<path d="M10 36 Q3 24 10 15 Q17 6 25 10" fill="none" stroke="#f2a4b8" stroke-width="7" stroke-linecap="round"/>'
-      + '</svg>';
-  }
-
-  /* ---------- 页面路径前缀（首页 / 内容页两种深度） ---------- */
+  /* ---------- 资源路径（首页 vs 内容页） ---------- */
   var inPages = /\/pages\//.test(location.pathname);
+  function asset(name) { return (inPages ? "../assets/" : "assets/") + name; }
   function pg(file) { return inPages ? "../pages/" + file : "pages/" + file; }
+  var CAT_AVATAR = asset("cat-avatar.png");
 
-  /* ---------- 问答库（关键词 → 回答；答案为纯文本，\n 换行） ---------- */
+  /* ---------- 问答库（关键词 → 回答） ---------- */
   var QA = [
     { keys: ["校区", "兰花湖", "南岸", "分到哪个", "在哪个校", "经管类在"],
       a: "大一的校区分配和学院有关喵：经管类专业大一在兰花湖校区，大部分其他专业在南岸主校区。",
@@ -122,18 +93,22 @@
   ];
   var fbIndex = 0;
 
+  function avatarImg(cls, size) {
+    return '<img class="' + (cls || "") + '" src="' + CAT_AVATAR + '" width="' + size + '" height="' + size + '" alt="喵小助手" />';
+  }
+
   /* ---------- 构建挂件 DOM ---------- */
   var widget = document.createElement("div");
   widget.className = "cat-widget";
   widget.innerHTML = ''
     + '<button class="cat-fab" id="catFab" aria-label="打开喵小助手">'
-    +   catTailSVG()
-    +   '<span class="cat-fab-body">' + catFaceSVG(46) + '</span>'
+    +   avatarImg("cat-fab-img", 66)
+    +   '<span class="cat-orbs" aria-hidden="true"><span class="orb-1"></span><span class="orb-2"></span><span class="orb-3"></span></span>'
     + '</button>'
     + '<div class="cat-bubble-tip" id="catTip" hidden>喵～新生问题可以点我</div>'
     + '<div class="cat-panel" id="catPanel" hidden>'
     +   '<div class="cat-panel-head" id="catHead" title="摸摸头">'
-    +     '<div class="cat-head-avatar">' + catFaceSVG(34) + '</div>'
+    +     '<div class="cat-head-avatar">' + avatarImg("", 46) + '</div>'
     +     '<div class="cat-head-info"><b>喵小助手</b><span>在线 · 会看家会答疑</span></div>'
     +     '<button class="cat-close" id="catClose" aria-label="收起对话">×</button>'
     +   '</div>'
@@ -146,42 +121,27 @@
   document.body.appendChild(widget);
 
   var fab      = widget.querySelector("#catFab");
-  var fabFace  = fab.querySelector(".cat-face");
-  var tail     = fab.querySelector(".cat-tail");
   var tip      = widget.querySelector("#catTip");
   var panel    = widget.querySelector("#catPanel");
   var head     = widget.querySelector("#catHead");
-  var headFace = head.querySelector(".cat-face");
   var msgs     = widget.querySelector("#catMsgs");
   var form     = widget.querySelector("#catForm");
   var input    = widget.querySelector("#catInput");
 
-  /* ---------- 表情状态机 ---------- */
-  function setHappy(face, ms) {
-    face.classList.add("happy");
-    setTimeout(function () { face.classList.remove("happy"); }, ms || 1400);
+  /* ---------- 表情 / 状态反馈 ---------- */
+  function setState(name, ms) {
+    fab.classList.add(name);
+    if (ms) setTimeout(function () { fab.classList.remove(name); }, ms);
+  }
+  function clearState() {
+    fab.classList.remove("thinking", "replying", "happy");
   }
 
-  /* 随机眨眼（两只猫各自独立眨） */
-  function bindBlink(face) {
-    (function loop() {
-      var wait = 2400 + Math.random() * 3200;
-      setTimeout(function () {
-        face.classList.add("blink");
-        setTimeout(function () { face.classList.remove("blink"); }, 160);
-        loop();
-      }, wait);
-    })();
-  }
-  bindBlink(fabFace);
-  bindBlink(headFace);
-
-  /* 摸头：开心 + 冒爱心（顶栏头像区域点击） */
+  /* 摸头：开心 + 冒爱心 */
   var petCooldown = 0;
   head.addEventListener("click", function (e) {
-    if (e.target.closest("#catClose")) return; // 点关闭按钮不算摸头
-    setHappy(headFace, 1500);
-    setHappy(fabFace, 1500);
+    if (e.target.closest("#catClose")) return;
+    setState("happy", 1200);
     var now = Date.now();
     if (now - petCooldown > 3000) {
       petCooldown = now;
@@ -216,9 +176,10 @@
   fab.addEventListener("click", function () {
     hideTip();
     if (panel.hidden) {
+      clearState();
       panel.hidden = false;
       panel.classList.remove("closing");
-      setHappy(fabFace, 1200);
+      setState("happy", 900);
       if (!greeted) {
         greeted = true;
         botSay("喵呜～你好呀！我是喵小助手，关于报到、宿舍、选课、密码这些问题都可以问我喵。", function () {
@@ -236,7 +197,7 @@
     setTimeout(function () {
       panel.hidden = true;
       panel.classList.remove("closing");
-    }, 190);
+    }, 220);
   }
   widget.querySelector("#catClose").addEventListener("click", function (e) {
     e.stopPropagation();
@@ -268,7 +229,7 @@
     div.className = "cat-msg " + role;
     var ava = document.createElement("div");
     ava.className = "avatar";
-    if (role === "bot") ava.innerHTML = catFaceSVG(22);
+    if (role === "bot") ava.innerHTML = avatarImg("", 30);
     var b = document.createElement("div");
     b.className = "bubble msg-in";
     b.textContent = text;
@@ -283,7 +244,7 @@
   function botSay(text, done, link) {
     var b = addMsg("bot", "");
     var i = 0;
-    setHappy(headFace, 900); // 思考/说话时眯眯眼
+    setState("replying", 900);
     (function type() {
       if (i <= text.length) {
         b.textContent = text.slice(0, i);
@@ -305,7 +266,7 @@
     })();
   }
 
-  /* 快捷问题按钮（插在消息流末尾，点击即提问） */
+  /* 快捷问题按钮 */
   function appendChips() {
     var old = msgs.querySelector(".cat-chips");
     if (old) old.remove();
@@ -342,19 +303,17 @@
 
   function ask(q) {
     addMsg("user", q);
-    /* 思考中：typing 指示 + 摇尾巴 + 眨眼 */
+    /* 思考中：typing 指示 + 头像轻颤 */
     var t = document.createElement("div");
     t.className = "cat-msg bot";
-    t.innerHTML = '<div class="avatar">' + catFaceSVG(22) + '</div>'
+    t.innerHTML = '<div class="avatar">' + avatarImg("", 30) + '</div>'
       + '<div class="bubble"><span class="cat-typing"><i></i><i></i><i></i></span></div>';
     msgs.appendChild(t);
     msgs.scrollTop = msgs.scrollHeight;
-    tail.classList.add("fast");
-    var tf = t.querySelector(".cat-face");
-    if (tf) { tf.classList.add("blink"); }
+    setState("thinking");
 
     setTimeout(function () {
-      tail.classList.remove("fast");
+      clearState();
       t.remove();
       var hit = findAnswer(q);
       if (hit) {
