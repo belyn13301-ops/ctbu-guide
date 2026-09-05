@@ -67,6 +67,10 @@
       a: "哪栋楼是几教、在哪上课，学姐写过一篇教学楼实拍介绍喵。",
       link: ["classroom.html", "看教学楼介绍"] },
 
+    { keys: ["地图", "虚拟校园", "云逛", "方位", "导航", "找路", "迷路"],
+      a: "学校官方有一个三维虚拟校园系统喵：以真实校园为蓝本，能查方位、找建筑，宿舍食堂教学楼都能提前看。这是学校官网的官方入口，放心点～",
+      link: ["http://gis.ctbu.edu.cn", "去三维虚拟校园"] },
+
     { keys: ["图书馆", "自习", "藏书"],
       a: "图书馆的攻略学姐还在整理中喵…想早点了解的话，去喵窝群问学长学姐会更快～" },
 
@@ -255,7 +259,8 @@
         if (link) {
           var a = document.createElement("a");
           a.className = "cat-link-btn";
-          a.href = pg(link[0]);
+          a.href = /^https?:\/\//.test(link[0]) ? link[0] : pg(link[0]);
+          if (/^https?:\/\//.test(link[0])) a.target = "_blank", a.rel = "noopener";
           a.textContent = link[1] + " →";
           b.appendChild(document.createElement("br"));
           b.appendChild(a);
