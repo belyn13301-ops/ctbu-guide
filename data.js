@@ -26,13 +26,13 @@
 const CONFIG = {
   brand: "CTBU一只喵",
   slogan: "新生干货，一站搞定",
-  updatedAt: "2026年9月7日更新 v14（食堂付款别刷错码）"   // 改这里更新页脚的"最后更新"
+  updatedAt: "2026年9月7日更新 v15（首页分节改版）"   // 改这里更新页脚的"最后更新"
 };
 
-/* ---------- 分类（顺序就是显示顺序） ---------- */
+/* ---------- 分类（顺序就是显示顺序，按新生时间线排） ---------- */
 const CATEGORIES = [
-  "军训", "选课&课表", "考试&复习", "证件&办事",
-  "校园生活", "交通&报到", "AI工具", "女生向&成长", "社群交流"
+  "交通&报到", "证件&办事", "校园生活", "军训",
+  "选课&课表", "考试&复习", "AI工具", "女生向&成长", "社群交流"
 ];
 
 /* ---------- 分类图标（可改 emoji） ---------- */
@@ -52,7 +52,7 @@ const RESOURCES = [
     category: "军训", stage: "开学后",
     title: "军训必备清单｜这些东西一定要带",
     desc: "从防晒到鞋垫，学姐踩过的坑都帮你避开了",
-    type: "图文", link: "#", hot: true
+    type: "图文", link: "#"
   },
   {
     category: "军训", stage: "开学后",
@@ -98,7 +98,7 @@ const RESOURCES = [
     category: "考试&复习", stage: "开学后",
     title: "四六级备考时间线",
     desc: "从背单词到真题，按月规划好",
-    type: "图文", link: "#", hot: true
+    type: "图文", link: "#"
   },
   {
     category: "考试&复习", stage: "开学后",
@@ -118,7 +118,7 @@ const RESOURCES = [
     category: "证件&办事", stage: "报到中",
     title: "报到要带的证件清单",
     desc: "身份证、录取通知书、照片…别漏",
-    type: "资料", link: "#", hot: true
+    type: "资料", link: "#"
   },
   {
     category: "证件&办事", stage: "报到中",
@@ -144,7 +144,7 @@ const RESOURCES = [
     category: "校园生活", stage: "开学后",
     title: "食堂干饭全攻略｜5个食堂怎么选",
     desc: "筱园TOP1到翠园，一荤一素7元起，美食暴击",
-    type: "图文", link: "pages/canteen.html", hot: true
+    type: "图文", link: "pages/canteen.html"
   },
   {
     category: "校园生活", stage: "开学后",
@@ -180,7 +180,7 @@ const RESOURCES = [
     category: "校园生活", stage: "开学后",
     title: "宿舍入住攻略｜床位&生活区",
     desc: "带什么不带什么，看这一篇",
-    type: "图文", link: "#", hot: true
+    type: "图文", link: "#"
   },
   {
     category: "校园生活", stage: "开学后",
@@ -200,7 +200,7 @@ const RESOURCES = [
     category: "交通&报到", stage: "报到前",
     title: "2026级新生开学全攻略",
     desc: "三校区注意事项+证件档案+必备物品+报到流程+防坑指南",
-    type: "图文", link: "pages/notice.html", hot: true
+    type: "图文", link: "pages/notice.html"
   },
   {
     category: "交通&报到", stage: "报到前",
@@ -218,7 +218,7 @@ const RESOURCES = [
     category: "交通&报到", stage: "报到前",
     title: "新生报到流程全图解",
     desc: "到校第一天要干嘛，按这个走",
-    type: "图文", link: "#", hot: true
+    type: "图文", link: "#"
   },
   {
     category: "交通&报到", stage: "报到前",
@@ -238,7 +238,7 @@ const RESOURCES = [
     category: "AI工具", stage: "开学后",
     title: "大学生必会的5个AI工具",
     desc: "做笔记、写报告、做PPT都能省一半时间",
-    type: "图文", link: "#", hot: true
+    type: "图文", link: "#"
   },
   {
     category: "AI工具", stage: "开学后",
@@ -258,7 +258,7 @@ const RESOURCES = [
     category: "女生向&成长", stage: "开学后",
     title: "大学四年怎么规划不虚度",
     desc: "学姐的真心话，大一就能用的框架",
-    type: "图文", link: "#", hot: true
+    type: "图文", link: "#"
   },
   {
     category: "女生向&成长", stage: "开学后",

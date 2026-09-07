@@ -43,7 +43,9 @@
         </svg>
         <input id="search" type="search" placeholder="搜干货：军训 / 选课 / 四六级 …" autocomplete="off" />
       </div>
-      <div class="chips" id="chips" role="tablist" aria-label="分类筛选"></div>
+      <div class="chips-wrap">
+        <div class="chips" id="chips" role="tablist" aria-label="分类筛选"></div>
+      </div>
     </div>
   </div>
 
@@ -88,14 +90,17 @@
       <span id="stage-tag" class="stage-tag" hidden></span>
     </div>
 
-    <!-- 资源卡片网格 -->
-    <div class="grid" id="grid" aria-live="polite"></div>
+    <!-- 资源卡片（按分类分节渲染） -->
+    <div class="grid-wrap" id="grid" aria-live="polite"></div>
 
     <!-- 空状态 -->
     <div class="empty" id="empty" hidden>
       <div class="empty-emoji">🐱</div>
       <p>没找到相关内容～换个关键词试试？</p>
     </div>
+
+    <!-- 敬请期待（占位内容折叠区） -->
+    <div class="pending-zone" id="pendingZone" hidden></div>
   </main>
 
   <!-- 页脚 -->
