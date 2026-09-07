@@ -26,7 +26,7 @@
 const CONFIG = {
   brand: "CTBU一只喵",
   slogan: "新生干货，一站搞定",
-  updatedAt: "2026年9月7日更新 v15（首页分节改版）"   // 改这里更新页脚的"最后更新"
+  updatedAt: "2026年9月7日更新 v16（去重瘦身）"   // 改这里更新页脚的"最后更新"
 };
 
 /* ---------- 分类（顺序就是显示顺序，按新生时间线排） ---------- */
@@ -48,12 +48,6 @@ const CATEGORY_ICONS = {
    ============================================================ */
 const RESOURCES = [
   // ---------- 军训 ----------
-  {
-    category: "军训", stage: "开学后",
-    title: "军训必备清单｜这些东西一定要带",
-    desc: "从防晒到鞋垫，学姐踩过的坑都帮你避开了",
-    type: "图文", link: "#"
-  },
   {
     category: "军训", stage: "开学后",
     title: "军训防晒不踩雷实测",
@@ -86,12 +80,6 @@ const RESOURCES = [
     desc: "一步步截图，看不懂算我输",
     type: "资料", link: "#"
   },
-  {
-    category: "选课&课表", stage: "开学后",
-    title: "抢课技巧&时间安排表",
-    desc: "提前收藏，定好闹钟别错过",
-    type: "资料", link: "#"
-  },
 
   // ---------- 考试&复习 ----------
   {
@@ -113,18 +101,6 @@ const RESOURCES = [
     title: "财务缴费｜校园一卡通｜统一身份认证的密码是什么",
     desc: "三类账号密码一次理清楚，账号都是学号，初始密码规则各不同",
     type: "图文", link: "pages/finance-auth.html", hot: true
-  },
-  {
-    category: "证件&办事", stage: "报到中",
-    title: "报到要带的证件清单",
-    desc: "身份证、录取通知书、照片…别漏",
-    type: "资料", link: "#"
-  },
-  {
-    category: "证件&办事", stage: "报到中",
-    title: "校园卡怎么用？充值/挂失全流程",
-    desc: "吃饭、洗澡、进出都靠它",
-    type: "图文", link: "#"
   },
   {
     category: "证件&办事", stage: "开学后",
@@ -178,18 +154,6 @@ const RESOURCES = [
   },
   {
     category: "校园生活", stage: "开学后",
-    title: "宿舍入住攻略｜床位&生活区",
-    desc: "带什么不带什么，看这一篇",
-    type: "图文", link: "#"
-  },
-  {
-    category: "校园生活", stage: "开学后",
-    title: "食堂测评｜哪个窗口最值得",
-    desc: "学姐吃了半学期的真实推荐",
-    type: "实景", link: "#"
-  },
-  {
-    category: "校园生活", stage: "开学后",
     title: "校园周边生活地图",
     desc: "快递、超市、打印、理发一站找",
     type: "实景", link: "#"
@@ -213,12 +177,6 @@ const RESOURCES = [
     title: "学校概况一览",
     desc: "3个校区·2896亩·王牌专业·学科实力",
     type: "图文", link: "pages/school.html"
-  },
-  {
-    category: "交通&报到", stage: "报到前",
-    title: "新生报到流程全图解",
-    desc: "到校第一天要干嘛，按这个走",
-    type: "图文", link: "#"
   },
   {
     category: "交通&报到", stage: "报到前",
