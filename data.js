@@ -26,7 +26,7 @@
 const CONFIG = {
   brand: "CTBU一只喵",
   slogan: "新生干货，一站搞定",
-  updatedAt: "2026年9月5日更新 v13（官方三维虚拟校园入口）"   // 改这里更新页脚的"最后更新"
+  updatedAt: "2026年9月7日更新 v14（食堂付款别刷错码）"   // 改这里更新页脚的"最后更新"
 };
 
 /* ---------- 分类（顺序就是显示顺序） ---------- */
@@ -163,6 +163,12 @@ const RESOURCES = [
     title: "宿舍开学清单都有什么？",
     desc: "床垫·床品·电子·药品·军训·避雷，CTBU学姐逐项拆解",
     type: "图文", link: "pages/dorm-list.html", hot: true
+  },
+  {
+    category: "校园生活", stage: "报到中",
+    title: "食堂付款别刷错码｜校园码有校园补贴",
+    desc: "校园码才有补贴，微信/云闪付别刷错",
+    type: "图文", link: "pages/card-pay.html", hot: true
   },
   {
     category: "校园生活", stage: "开学后",
