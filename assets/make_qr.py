@@ -2,7 +2,7 @@
 import qrcode
 from qrcode.constants import ERROR_CORRECT_M
 
-LINK = "https://c0d1d27a8a4d46ee90b190ac11ea3fbf.bj5.agentos-app.net"
+LINK = "https://belyn13301-ops.github.io/ctbu-guide/"
 OUT = "C:/Users/20501/WorkBuddy/2026-07-31-14-36-45/site/assets/qr.png"
 
 qr = qrcode.QRCode(
